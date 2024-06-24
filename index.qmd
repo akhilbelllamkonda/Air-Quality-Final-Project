@@ -1,0 +1,50 @@
+---
+execute: 
+  echo: false
+  warning: false
+---
+The Air Quality in India is changing rapidly  due to rise in population in those areas. This data was sourced from a data set which was created by Kaggle. Then, different pollutants were joined to analyze the relationship between city and pollution. The example shows us that there is more air pollution in the areas with higher population.
+```{r}
+#| label: setup
+
+library(tidyverse)
+library(sf)
+library(ggplot2)
+library(rnaturalearth)
+library(rnaturalearthdata)
+
+```
+
+```{r}
+data <- read_csv('/Users/chittibellamkonda/Downloads/archive/city_day.csv')
+```
+
+```{r}
+data <- data |> drop_na()
+data <- data |> distinct()
+city_coords <- data.frame(
+  City = c("Delhi", "Mumbai", "Kolkata", "Chennai", "Bangalore", "Hyderabad"),
+  lat = c(28.7041, 19.0760, 22.5726, 13.0827, 12.9716, 17.3850),
+  lon = c(77.1025, 72.8777, 88.3639, 80.2707, 77.5946, 78.4867)
+)
+
+
+avg_pm25 <- data |>
+  group_by(City) |>
+  summarise(avg_PM2.5 = mean(PM2.5, na.rm = TRUE))
+india <- ne_countries(scale = "medium", country = "India", returnclass = "sf")
+plot_data <- merge(avg_pm25, city_coords, by = "City")
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = india, fill = "gray90", color = "gray50") +  # Map outline of India
+  geom_point(data = plot_data, aes(x = lon, y = lat, size = avg_PM2.5, color = avg_PM2.5), alpha = 0.7) +  # PM2.5 data points
+  scale_size_continuous(range = c(1, 10), name = "Average PM2.5") +  # Size scale
+  scale_color_viridis_c(name = "Average PM2.5") +  # Color scale
+  labs(title = "Average PM2.5 Levels by City in India") +  # Title
+  theme_void() +  # Minimal theme
+  theme(legend.position = "right")
+```
+
+This script maps average PM2.5 levels across major Indian cities using Kaggle's "Air Quality Data in India (2015-2020)". It helps visualize spatial differences in particulate matter levels, aiding in environmental management insights.

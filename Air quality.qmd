@@ -1,0 +1,13 @@
+---
+title: "Air Quality Final PRoject"
+author: "Akhil B"
+format: html
+---
+```{r}
+library(tidyverse)
+library(readr)
+```
+```{r}
+read_csv("/Users/chittibellamkonda/Downloads/archive/city_day.csv")
+```
+

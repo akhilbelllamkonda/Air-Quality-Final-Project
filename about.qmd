@@ -1,0 +1,10 @@
+---
+title: "About"
+---
+
+Hi, My Name is Akhil Bellamkonda. My Github account is https://github.com/akhilbelllamkonda and my account is akhilbelllamkonda@gmail.com
+
+Github link: https://github.com/akhilbelllamkonda/Air-Quality-Final-Project
+
+This project was created as a part of Kane’s Data Science Bootcamp. -https://bootcamp.davidkane.info/.
+
