@@ -3,4 +3,4 @@ title: "Sources"
 format: html
 ---
 
-For my project, I used a data source from Kaggle named 'Air Quality in India(2015-2020). The link is [Air Quality Data in India (2015 - 2020) (kaggle.com)](https://www.kaggle.com/datasets/rohanrao/air-quality-data-in-india?resource=download). The first thing I did to this data is remove all the missing values using drop_na(). Then I removed duplicate values. Then I used summarize to use the 'avg_pm2.5' variable.
+\*\*I obtained the data from Kaggle, focusing on air quality measurements across Indian cities from 2015 to 2020. To ensure accuracy, I cleaned the dataset by addressing missing values, correcting formats, and removing duplicates. This process helped maintain data integrity by excluding incomplete or erroneous entries, enabling a reliable analysis of trends in air pollution metrics across urban areas in India.\*\*

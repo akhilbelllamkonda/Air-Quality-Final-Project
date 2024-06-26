@@ -90,7 +90,11 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Home</span></a>
+<span class="menu-text">Plot 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./plot_2.html"> 
+<span class="menu-text">Plot 2</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
@@ -120,17 +124,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>The Air Quality in India is changing rapidly due to rise in population in those areas. This data was sourced from a data set which was created by Kaggle. Then, different pollutants were joined to analyze the relationship between city and pollution. The example shows us that there is more air pollution in the areas with higher population.</p>
+<p><strong>The air quality in India is changing rapidly throughout the years due to the rise in population in urban areas. This data was sourced from a dataset created by Kaggle. Then, different pollutants were integrated to analyze the relationship between cities and pollution. The analysis shows that there is more air pollution in areas with higher population densities.</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.gif" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>This script maps average PM2.5 levels across major Indian cities using Kaggle’s “Air Quality Data in India (2015-2020)”. It helps visualize spatial differences in particulate matter levels, aiding in environmental management insights.</p>
+<p><strong>I noticed pollutant levels tend to rise at the beginning, middle, and end of each year. This pattern likely reflects seasonal changes influenced by weather and human activities such as heating in colder months, agricultural practices like crop burning in the middle, and increased traffic during festive seasons at the end. Understanding these fluctuations is crucial for effective year-round air quality management.</strong></p>
 
 
 
@@ -227,7 +231,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/abellamkonda\.quarto\.pub\/air-quality-in-india(2015-2020");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

@@ -6,7 +6,9 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: Plot 1
+      - href: plot_2.qmd
+        text: Plot 2
       - about.qmd
       - href: sources.qmd
         text: Sources

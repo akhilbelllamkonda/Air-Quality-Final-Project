@@ -1,9 +1,11 @@
 ---
+title: "Plot 2"
+format: html
 execute: 
-  echo: false
   warning: false
+  echo: false
+  
 ---
-**The air quality in India is changing rapidly throughout the years due to the rise in population in urban areas. This data was sourced from a dataset created by Kaggle. Then, different pollutants were integrated to analyze the relationship between cities and pollution. The analysis shows that there is more air pollution in areas with higher population densities.**
 ```{r}
 #| label: setup
 library(gganimate)
@@ -22,14 +24,14 @@ data <- read_csv('/Users/chittibellamkonda/Downloads/archive/city_day.csv')
 ```{r}
 # Cleaning the data to make the city only equal to Delhi and changinng the format of
 #the date
-Delhi_data <- data |> 
-filter(City == 'Delhi')|>
+hyd_data <- data |> 
+filter(City == 'Hyderabad')|>
 select(Date, PM2.5, PM10, NO, NO2, NOx, NH3, CO, SO2, O3)|> 
 mutate(Date = as.Date(Date, format = "%Y-%m-%d"))
 ```
 
 ```{r}
-Delhi_long <- Delhi_data |>
+hyd_long <- hyd_data |>
   pivot_longer(cols = -Date, names_to = "Pollutant", values_to = "Value") |>
   group_by(Date, Pollutant) |>
   summarise(Value = mean(Value, na.rm = TRUE))
@@ -37,10 +39,10 @@ Delhi_long <- Delhi_data |>
 plot_width <- 10  # Adjust as needed
 plot_height <- 6    
 
-animated_plot <- ggplot(Delhi_long, aes(x = Date, y = Value, color = Pollutant)) +
+animated_plot <- ggplot(hyd_long, aes(x = Date, y = Value, color = Pollutant)) +
   geom_line() +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y") +  # Set breaks to 1 year
-  labs(title = "Air Quality Metrics Over Time in Delhi",
+  labs(title = "Air Quality Metrics Over Time in Hyderabad",
        x = "Date", y = "Concentration",
        color = "Pollutant") +
   theme_minimal() +
@@ -51,12 +53,15 @@ animated_plot <- ggplot(Delhi_long, aes(x = Date, y = Value, color = Pollutant))
         plot.background = element_rect(fill = "white"),
         aspect.ratio = plot_height / plot_width) +
   coord_cartesian(clip = "off")+ 
-      transition_reveal(Date)  # Animate by revealing lines over time
+    transition_reveal(Date)  # Animate by revealing lines over time
 
 # Save the animation as a GIF
 animate(animated_plot, nframes = 200, end_pause = 50, width = plot_width, height = plot_height, units = "in", res = 100, renderer = gifski_renderer(loop = FALSE))
 anim_save("hyderabad_air_quality.gif")
+
 ```
+**In Hyderabad, air pollution peaks at the start and end of the year due to seasonal changes and local emissions, with PM2.5 and PM10 spiking moderately in winter. Nitrogen oxides (NO and NO2) show slight increases during colder months, while CO and SO2 are generally stable. In contrast, Delhi experiences sharp pollution spikes, especially in winter, driven by crop residue burning and vehicular emissions. PM2.5 and PM10 levels rise significantly, and NO, NO2, CO, and SO2 all increase notably during the crop burning season, highlighting more severe pollution compared to Hyderabad.**
 
 
-**I noticed pollutant levels tend to rise at the beginning, middle, and end of each year. This pattern likely reflects seasonal changes influenced by weather and human activities such as heating in colder months, agricultural practices like crop burning in the middle, and increased traffic during festive seasons at the end. Understanding these fluctuations is crucial for effective year-round air quality management.**
+
+
